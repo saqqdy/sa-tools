@@ -315,6 +315,35 @@ var pattern = {
   repArticleHouse:/([\s\S]*)\{\{\{articleHouse\}\}\}([\s\S]*)/
 }
 
+// @angular/cli@6.1.3
+// @vue/cli@3.0.0-rc.5
+// cnpm@6.0.0
+// coffee-script@1.12.7
+// express-generator@4.16.0
+// fis-optimizer-html-compress@0.0.7
+// fis-optimizer-html-minifier@0.0.9
+// fis-parser-babel-5.x@1.4.0
+// fis-parser-jdists@2.2.3
+// fis-parser-less@0.1.3
+// fis3@3.4.39
+// fis3-deploy-replace@1.0.2
+// fis3-deploy-zip@2.0.0
+// fis3-hook-relative@2.0.3
+// fis3-postpackager-loader@2.1.11
+// fis3-preprocessor-autoprefixer@0.1.1
+// jshint@2.9.6
+// nodemon@1.18.3
+// npm@6.4.0
+// npm-check@5.7.1
+// nuxt@1.4.2
+// pm2@3.0.0
+// react-native-cli@2.0.1
+// undefined@0.1.0
+// webpack@4.16.1
+// yarn@1.7.0
+
+// @angular/cli @vue/cli jshint npm-check pm2 react-native-cli webpack webpack-dev-server
+// gulp
 
 //是否为由数字组成的字符串
 var isDigitals = function(str){
@@ -873,11 +902,11 @@ function getSessionStorage(name) {
   } else {
     return null;
   };
-};
+}
 //删除sessionStorage
 function delSessionStorage(name) {
   sessionStorage.removeItem(name);
-};
+}
 //写localStorage
 function setLocalStorage(name, value, time) {
   var strsec = getsec(time);
@@ -888,7 +917,7 @@ function setLocalStorage(name, value, time) {
   obj.expires = expires;
   obj = encodeURIComponent(JSON.stringify(obj));
   localStorage.setItem(name, obj);
-};
+}
 //读取localStorage
 function getLocalStorage(name) {
   var str = localStorage.getItem(name);
@@ -908,12 +937,12 @@ function getLocalStorage(name) {
     //return (obj.expires > exp.getTime() ? obj.value : null);
   } else {
     return null;
-  };
-};
+  }
+}
 //删除localStorage
 function delLocalStorage(name) {
   localStorage.removeItem(name);
-};
+}
 //写cookies
 function setCookie(name, value, time, useLocalStorage) {
   useLocalStorage = (typeof(useLocalStorage) !== 'undefiend' ? useLocalStorage : true);
@@ -934,7 +963,7 @@ function setCookie(name, value, time, useLocalStorage) {
     exp.setTime(exp.getTime() + strsec * 1);
     document.cookie = name + "=" + obj + ";expires=" + exp.toGMTString() + ";path=/";
   }
-};
+}
 //读取cookies
 function getCookie(name, useLocalStorage) {
   useLocalStorage = (typeof(useLocalStorage) !== 'undefiend' ? useLocalStorage : true);

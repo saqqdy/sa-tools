@@ -1,14 +1,16 @@
-## Welcome to GitHub Pages
+## sa-tools
 
-You can use the [editor on GitHub](https://github.com/saqqdy/sa-tools/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+一个js常用工具库 [editor on GitHub](https://github.com/saqqdy/sa-tools/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+使用方法：
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### trim
 
-```markdown
+方法
+
+```
 Syntax highlighted code block
 
 # Header 1
