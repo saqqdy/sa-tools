@@ -1,0 +1,22 @@
+{
+    "name": "sa-tools",
+    "version": "1.0.1",
+    "description": "sa-tools",
+    "main": "tools.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/saqqdy/sa-tools.git"
+    },
+    "keywords": [
+        "tools"
+    ],
+    "author": "saqqdy <www.saqqdy.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/saqqdy/sa-tools/issues"
+    },
+    "homepage": "https://github.com/saqqdy/sa-tools#readme"
+}
