@@ -1,6 +1,11 @@
 
-//判断访问终端
-// "use strict";999
+// "use strict";
+/**
+ * @Author: saqqdy
+ * @Date: 2018-08-18 20:35:04
+ * @Last Modified by: saqqdy.com
+ * @Last Modified time: 2018-08-18 20: 35: 04
+ */
 
 Array.prototype.indexOf = function(obj){
   var result = -1, length = this.length, i = length - 1;
@@ -41,72 +46,72 @@ var remove = function(obj){
   return obj.remove();
 }
 
-function addEvent(element, type, handler) {
-  if (element.addEventListener) {
-    element.addEventListener(type, handler, false);
-  } else {
-    //为每一个事件处理函数分派一个唯一的ID
-    if (!handler.$$guid) handler.$$guid = addEvent.guid++;
-    //为元素的事件类型创建一个哈希表
-    if (!element.events) element.events = {};
-    //为每一个"元素/事件"对创建一个事件处理程序的哈希表
-    var handlers = element.events[type];
-    if (!handlers) {
-      handlers = element.events[type] = {};
-      //存储存在的事件处理函数(如果有)
-      if (element["on" + type]) {
-        handlers[0] = element["on" + type];
-      }
-    }
-    //将事件处理函数存入哈希表
-    handlers[handler.$$guid] = handler;
-    //指派一个全局的事件处理函数来做所有的工作
-    element["on" + type] = handleEvent;
-  }
-}
-// a counter used to create unique IDs
-addEvent.guid = 1;
+// function addEvent(element, type, handler) {
+//   if (element.addEventListener) {
+//     element.addEventListener(type, handler, false);
+//   } else {
+//     //为每一个事件处理函数分派一个唯一的ID
+//     if (!handler.$$guid) handler.$$guid = addEvent.guid++;
+//     //为元素的事件类型创建一个哈希表
+//     if (!element.events) element.events = {};
+//     //为每一个"元素/事件"对创建一个事件处理程序的哈希表
+//     var handlers = element.events[type];
+//     if (!handlers) {
+//       handlers = element.events[type] = {};
+//       //存储存在的事件处理函数(如果有)
+//       if (element["on" + type]) {
+//         handlers[0] = element["on" + type];
+//       }
+//     }
+//     //将事件处理函数存入哈希表
+//     handlers[handler.$$guid] = handler;
+//     //指派一个全局的事件处理函数来做所有的工作
+//     element["on" + type] = handleEvent;
+//   }
+// }
+// // a counter used to create unique IDs
+// addEvent.guid = 1;
 
-function removeEvent(element, type, handler) {
-  if (element.removeEventListener) {
-    element.removeEventListener(type, handler, false);
-  } else {
-    //从哈希表中删除事件处理函数
-    if (element.events && element.events[type]) {
-      delete element.events[type][handler.$$guid];
-    }
-  }
-}
+// function removeEvent(element, type, handler) {
+//   if (element.removeEventListener) {
+//     element.removeEventListener(type, handler, false);
+//   } else {
+//     //从哈希表中删除事件处理函数
+//     if (element.events && element.events[type]) {
+//       delete element.events[type][handler.$$guid];
+//     }
+//   }
+// }
 
-function handleEvent(event) {
-  var returnValue = true;
-  //抓获事件对象(IE使用全局事件对象)
-  event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
-  //取得事件处理函数的哈希表的引用
-  var handlers = this.events[event.type];
-  //执行每一个处理函数
-  for (var i in handlers) {
-    this.$$handleEvent = handlers[i];
-    if (this.$$handleEvent(event) === false) {
-      returnValue = false;
-    }
-  }
-  return returnValue;
-}
+// function handleEvent(event) {
+//   var returnValue = true;
+//   //抓获事件对象(IE使用全局事件对象)
+//   event = event || fixEvent(((this.ownerDocument || this.document || this).parentWindow || window).event);
+//   //取得事件处理函数的哈希表的引用
+//   var handlers = this.events[event.type];
+//   //执行每一个处理函数
+//   for (var i in handlers) {
+//     this.$$handleEvent = handlers[i];
+//     if (this.$$handleEvent(event) === false) {
+//       returnValue = false;
+//     }
+//   }
+//   return returnValue;
+// }
 
-//为IE的事件对象添加一些“缺失的”函数
-function fixEvent(event) {
-  //添加标准的W3C方法
-  event.preventDefault = fixEvent.preventDefault;
-  event.stopPropagation = fixEvent.stopPropagation;
-  return event;
-};
-fixEvent.preventDefault = function() {
-  this.returnValue = false;
-};
-fixEvent.stopPropagation = function() {
-  this.cancelBubble = true;
-};
+// //为IE的事件对象添加一些“缺失的”函数
+// function fixEvent(event) {
+//   //添加标准的W3C方法
+//   event.preventDefault = fixEvent.preventDefault;
+//   event.stopPropagation = fixEvent.stopPropagation;
+//   return event;
+// };
+// fixEvent.preventDefault = function() {
+//   this.returnValue = false;
+// };
+// fixEvent.stopPropagation = function() {
+//   this.cancelBubble = true;
+// };
 
 
 
@@ -291,29 +296,29 @@ var getNumber = function(string){
 
 
 //常用正则
-var pattern = {
-  any:/[\w\W]+/,
-  number:/^\d+$/,
-  string:/^[\u4E00-\u9FA5\uf900-\ufa2d\w\.\s]+$/,
-  postcode:/^[0-9]{6}$/,
-  url:/^(\w+:\/\/)?\w+(\.\w+)+.*$/,
-  username:/^[a-zA-Z0-9\_\-\.]{3,15}$/,
-  float:/^[0-9]+\.{0,1}[0-9]{0,2}$/,
-  email:/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
-  //mobile:/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[6|7|8]|18[0-9])\d{8}$/,
-  //mobile:/^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/,
-  mobile:/^1[3|4|5|7|8][0-9]\d{8,8}$/,
-  chinese:/^[\u4E00-\u9FA5\uf900-\ufa2d]$/,
-  tel:/^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/,
-  qq:/^[1-9][0-9]{5,13}$/,
-  pass:/^(?![0-9\W\_]+$)(?![a-zA-Z\W\_]+$)[0-9a-zA-Z\W\_]{6,16}$/,
-  json:/^\{[\s\S]*\}$/,
-  arrjson:/^\[\{[\s\S]*\}\]$/,
-  array:/^\[[\s\S]*\]$/,
-  getjson:/[\s\S]*(\{[\s\S]*\})[\s\S]*/,
-  textarea:/[\u4e00-\u9fa5_a-zA-Z0-9\,\.\/\?\;\:\'\"\[\]\-\*\(\)\（\）\%\$\@\\\!\，\《\》\。\、\？\；\：\‘\’\“\”\…\￥\！]/,
-  repArticleHouse:/([\s\S]*)\{\{\{articleHouse\}\}\}([\s\S]*)/
-}
+// var pattern = {
+//   any:/[\w\W]+/,
+//   number:/^\d+$/,
+//   string:/^[\u4E00-\u9FA5\uf900-\ufa2d\w\.\s]+$/,
+//   postcode:/^[0-9]{6}$/,
+//   url:/^(\w+:\/\/)?\w+(\.\w+)+.*$/,
+//   username:/^[a-zA-Z0-9\_\-\.]{3,15}$/,
+//   float:/^[0-9]+\.{0,1}[0-9]{0,2}$/,
+//   email:/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
+//   //mobile:/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|17[6|7|8]|18[0-9])\d{8}$/,
+//   //mobile:/^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/,
+//   mobile:/^1[3|4|5|7|8][0-9]\d{8,8}$/,
+//   chinese:/^[\u4E00-\u9FA5\uf900-\ufa2d]$/,
+//   tel:/^(([0\+]\d{2,3}-)?(0\d{2,3})-)?(\d{7,8})(-(\d{3,}))?$/,
+//   qq:/^[1-9][0-9]{5,13}$/,
+//   pass:/^(?![0-9\W\_]+$)(?![a-zA-Z\W\_]+$)[0-9a-zA-Z\W\_]{6,16}$/,
+//   json:/^\{[\s\S]*\}$/,
+//   arrjson:/^\[\{[\s\S]*\}\]$/,
+//   array:/^\[[\s\S]*\]$/,
+//   getjson:/[\s\S]*(\{[\s\S]*\})[\s\S]*/,
+//   textarea:/[\u4e00-\u9fa5_a-zA-Z0-9\,\.\/\?\;\:\'\"\[\]\-\*\(\)\（\）\%\$\@\\\!\，\《\》\。\、\？\；\：\‘\’\“\”\…\￥\！]/,
+//   repArticleHouse:/([\s\S]*)\{\{\{articleHouse\}\}\}([\s\S]*)/
+// }
 
 
 //是否为由数字组成的字符串
@@ -411,68 +416,106 @@ var isDigitals = function(str){
 //   }
 // }
 
-//获取APP版本号
-function getAppVersion(appName, withappstr, userAgent) {
-  //console.log(getAppVersion("Chrome"));
-  // const userAgent = navigator.userAgent;
-  var reg = eval("/" + appName + "\\/([\\d\\.]+)/");
-  var isApp = userAgent.includes(appName);
-  var ver = userAgent.match(reg, "i");
-  // console.log(userAgent)
-  // console.log(ver)
-  // withappstr = typeof(withappstr) != "undefined" ? withappstr : false;
-  if (ver) {
-    if (withappstr) {
-      //需要带上app名称，完整输出
-      return ver ? ver[0] : "";
-    } else {
-      return ver ? ver[1] : "";
-    }
-  } else {
-    if (isApp) {
-      //是指定客户端但是版本号未知
-      console.log(appName + "\u672A\u77E5\u7248\u672C\u53F7");
-      return false;
-    } else {
-      //不是指定客户端
-      console.log(appName + "\u4E0D\u5B58\u5728");
-      return null;
-    }
-  }
-}
+// /**
+//  * 获取手机系统版本
+//  * @param osName {String} 系统类型字符串Android、iPod、iWatch或iPhone
+//  * @param withosstr {Boolean} 是否需要带上名称
+//  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
+//  * @return {Boolean/null} null/true/false
+//  */
+// function getOsVersion(osName, withosstr, userAgent) {
+//   userAgent = userAgent || navigator.appVersion
+//   var d = ['iPhone', 'iPad', 'iPod', 'iWatch', 'Mac', 'iMac', 'iOS'], name = osName, index = d.indexOf(osName)
+//   if (index > -1 && userAgent.indexOf('like Mac OS X') > -1) {
+//     name = 'OS'
+//   }
+//   var reg = eval("/" + name + "\\s[\\d\\_]+/");
+//   var isApp = userAgent.includes(name);
+//   var ver = (userAgent.match(reg, "ig") + '').replace(/\s/ig, '/').replace(/_/ig, '.');
+//   if (index > -1) {
+//     ver = ver.replace(/OS\//ig, osName + '/')
+//   }
+//   // console.log(userAgent, reg)
+//   // console.log(ver)
+//   return getAppVersion(osName, withosstr, ver)
+// }
 
-//版本号大小对比
-function getIsAppVersionLastest(appName, compareVer, userAgent) {
-  //console.log(getIsAppVersionLastest("Chrome","5.1"));
-  var basicVer = appName.indexOf(".") > 0 ? appName : getAppVersion(appName, false, userAgent); //兼容getIsAppVersionLastest("1.2.2","1.2.3")直接传入版本号的对比
-  // var basicVer = "5.1.";
-  if (basicVer === null) {
-    return null;
-  } //不是指定客户端
-  if (basicVer === false) {
-    return false;
-  } //是指定客户端但是版本号未知
-  basicVer = basicVer + ".";
-  compareVer = compareVer + ".";
-  var bStr = parseFloat(basicVer);
-  var cStr = parseFloat(compareVer);
-  var bStrNext = parseFloat(basicVer.replace(bStr + ".", "")) || 0;
-  var cStrNext = parseFloat(compareVer.replace(cStr + ".", "")) || 0;
-  // console.log(bStr + "-" + cStr)
-  // console.log(basicVer.replace(bStr + ".","") + "-" + compareVer.replace(cStr + ".",""))
-  // console.log(bStrNext + "-" + cStrNext)
-  if (cStr > bStr) {
-    return false;
-  } else if (cStr < bStr) {
-    return true;
-  } else {
-    if (bStrNext >= cStrNext) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
+// /**
+//  * 获取APP版本号
+//  * @param appName {String} app名称
+//  * @param withosstr {Boolean} 是否需要带上名称
+//  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
+//  * @return {Boolean/null} null/true/false
+//  */
+// function getAppVersion(appName, withappstr, userAgent) {
+//   // console.log(getAppVersion("Chrome"));
+//   // const userAgent = navigator.userAgent;
+//   userAgent = userAgent || navigator.appVersion
+//   var reg = eval("/" + appName + "\\/([\\d\\.]+)/");
+//   var isApp = userAgent.includes(appName);
+//   var ver = userAgent.match(reg, "i");
+//   // console.log(userAgent)
+//   // console.log(ver)
+//   // withappstr = typeof(withappstr) != "undefined" ? withappstr : false;
+//   if (ver) {
+//     if (withappstr) {
+//       //需要带上app名称，完整输出
+//       return ver ? ver[0] : "";
+//     } else {
+//       return ver ? ver[1] : "";
+//     }
+//   } else {
+//     if (isApp) {
+//       //是指定客户端但是版本号未知
+//       console.log(appName + "\u672A\u77E5\u7248\u672C\u53F7");
+//       return false;
+//     } else {
+//       //不是指定客户端
+//       console.log(appName + "\u4E0D\u5B58\u5728");
+//       return null;
+//     }
+//   }
+// }
+
+// /**
+//  * 版本号大小对比
+//  * @param appName {String} app名称
+//  * @param compareVer {String} 必传 需要对比的版本号
+//  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
+//  * @return {Boolean/null} null/true/false
+//  */
+// function getIsAppVersionLastest(appName, compareVer, userAgent) {
+//   //console.log(getIsAppVersionLastest("Chrome","5.1"));
+//   userAgent = userAgent || navigator.appVersion
+//   var basicVer = appName.indexOf(".") > 0 ? appName : getAppVersion(appName, false, userAgent); //兼容getIsAppVersionLastest("1.2.2","1.2.3")直接传入版本号的对比
+//   // var basicVer = "5.1.";
+//   if (basicVer === null) {
+//     return null;
+//   } //不是指定客户端
+//   if (basicVer === false) {
+//     return false;
+//   } //是指定客户端但是版本号未知
+//   basicVer = basicVer + ".";
+//   compareVer = compareVer + ".";
+//   var bStr = parseFloat(basicVer);
+//   var cStr = parseFloat(compareVer);
+//   var bStrNext = parseFloat(basicVer.replace(bStr + ".", "")) || 0;
+//   var cStrNext = parseFloat(compareVer.replace(cStr + ".", "")) || 0;
+//   // console.log(bStr + "-" + cStr)
+//   // console.log(basicVer.replace(bStr + ".","") + "-" + compareVer.replace(cStr + ".",""))
+//   // console.log(bStrNext + "-" + cStrNext)
+//   if (cStr > bStr) {
+//     return false;
+//   } else if (cStr < bStr) {
+//     return true;
+//   } else {
+//     if (bStrNext >= cStrNext) {
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   }
+// }
 
 
 //获取滑动到顶部和底部 返回'top' 'bottom'
@@ -636,18 +679,46 @@ function stopBubble(e) {
 }*/
 
 /* 获取URL参数 */
+// function getUrlParam(url) {
+//   var urlStr = url != "" && typeof url != "undefined" ? url.substr(url.indexOf("?")) : location.search; //获取url中"?"符后的字串
+//   var urlParam = [];
+//   if (urlStr.includes("?")) {
+//     var str = urlStr.substr(1);
+//     var strs = str.split("&");
+//     for (var i = 0; i < strs.length; i++) {
+//       //urlParam[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+//       urlParam[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
+//     };
+//   };
+//   return urlParam;
+// }
+// function getUrlParam(url) {
+//   // url = (url != "" && typeof url != "undefined") ? url.substr(url.indexOf("?")) : location.search; //获取url中"?"符后的字串
+//   var reg_url = /^[^\?]+\?([\w\W]+)$/,
+//     reg_para = /([^&=]+)=([\w\W]*?)(&|$|#)/g,
+//     arr_url = reg_url.exec(url),
+//     ret = {};
+//   if (arr_url && arr_url[1]) {
+//     var str_para = arr_url[1], result;
+//     while ((result = reg_para.exec(str_para)) != null) {
+//       ret[result[1]] = result[2];
+//     }
+//   }
+//   return ret;
+// }
 function getUrlParam(url) {
-  var urlStr = url != "" && typeof url != "undefined" ? url.substr(url.indexOf("?")) : location.search; //获取url中"?"符后的字串
-  var urlParam = [];
-  if (urlStr.includes("?")) {
-    var str = urlStr.substr(1);
-    var strs = str.split("&");
-    for (var i = 0; i < strs.length; i++) {
-      //urlParam[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-      urlParam[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
-    };
-  };
-  return urlParam;
+  url = (url !== "" && typeof url !== "undefined") ? url.substr(url.indexOf("?")).split('#')[0] : location.search; //获取url中"?"符后的字串
+  var search = url.substring(url.lastIndexOf("?") + 1);
+  var obj = {};
+  var reg = /([^?&=]+)=([^?&=]*)/g;
+  search.replace(reg, function (rs, $1, $2) {
+    var name = decodeURIComponent($1);
+    var val = decodeURIComponent($2);
+    val = String(val);
+    obj[name] = val;
+    return rs;
+  });
+  return obj;
 }
 //console.log(getUrlParam(location.href))
 
@@ -842,11 +913,34 @@ function saWindowWidth() {
 
 
 //start cookis操作------------------------------------------------------
+function setCache ($key, $value, $expire) {
+  var object = {
+    value: $value,
+    timestamp: $expire && (parseInt($expire) + new Date().getTime()) || '0'
+  };
+  localStorage.setItem($key, JSON.stringify(object));
+};
+function getCache ($key) {
+  var cache = localStorage.getItem($key);
+  if (cache) {
+    var object = JSON.parse(localStorage.getItem($key)),
+      dateString = object.timestamp,
+      now = new Date().getTime().toString();
+    if (dateString != '0' && now > dateString) {
+      localStorage.removeItem($key);
+      return null;
+    }
+    return object.value;
+  } else return null;
+};
+function clearCache ($key) {
+  localStorage.removeItem($key);
+};
 //写sessionStorage
 function setSessionStorage(name, value, time) {
   var strsec = getsec(time);
   var exp = new Date();
-  var expires = strsec ? exp.getTime() + strsec : "";
+  var expires = strsec ? exp.getTime() + (strsec*1000) : "";
   var obj = {};
   obj.value = value;
   obj.expires = expires;
@@ -882,7 +976,7 @@ function delSessionStorage(name) {
 function setLocalStorage(name, value, time) {
   var strsec = getsec(time);
   var exp = new Date();
-  var expires = strsec ? exp.getTime() + strsec : "";
+  var expires = strsec ? exp.getTime() + (strsec*1000) : "";
   var obj = {};
   obj.value = value;
   obj.expires = expires;
@@ -916,7 +1010,7 @@ function delLocalStorage(name) {
 };
 //写cookies
 function setCookie(name, value, time, useLocalStorage) {
-  useLocalStorage = (typeof(useLocalStorage) !== 'undefiend' ? useLocalStorage : true);
+  useLocalStorage = (typeof(useLocalStorage) !== 'undefined' ? useLocalStorage : true);
   var strsec = getsec(time);
   var exp = new Date();
   var expires = strsec ? exp.getTime() + strsec : "";
@@ -927,17 +1021,17 @@ function setCookie(name, value, time, useLocalStorage) {
   if (window.localStorage && useLocalStorage) {
     localStorage.setItem(name, obj);
   } else {
-    strsec = strsec ? strsec : 2592000; //没有设定时间的默认30天
+    strsec = strsec ? strsec : 2592000000; //没有设定时间的默认30天
     // var strsec = getsec(time);
     // var exp = new Date();
     // value = (typeof(value) == "object" ? JSON.stringify(value) : value);
-    exp.setTime(exp.getTime() + strsec * 1);
+    exp.setTime(exp.getTime() + strsec);
     document.cookie = name + "=" + obj + ";expires=" + exp.toGMTString() + ";path=/";
   }
 };
 //读取cookies
 function getCookie(name, useLocalStorage) {
-  useLocalStorage = (typeof(useLocalStorage) !== 'undefiend' ? useLocalStorage : true);
+  useLocalStorage = (typeof(useLocalStorage) !== 'undefined' ? useLocalStorage : true);
   if (window.localStorage && useLocalStorage) {
     var str = localStorage.getItem(name);
     var exp = new Date();
@@ -974,7 +1068,7 @@ function getCookie(name, useLocalStorage) {
 };
 //删除cookies
 function delCookie(name, useLocalStorage) {
-  useLocalStorage = (typeof(useLocalStorage) !== 'undefiend' ? useLocalStorage : true);
+  useLocalStorage = (typeof(useLocalStorage) !== 'undefined' ? useLocalStorage : true);
   if (window.localStorage && useLocalStorage) {
     localStorage.removeItem(name);
   } else {
@@ -1046,6 +1140,156 @@ var getRandomStrWidthSpecialChar = function(len){
   return str;
 };
 
+// 字符串、数字转base64
+var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+var encodeBase64 = function (input) {
+  var output = "";
+  var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+  var i = 0;
+  input = encodeUtf8(input);
+  while (i < input.length) {
+    chr1 = input.charCodeAt(i++);
+    chr2 = input.charCodeAt(i++);
+    chr3 = input.charCodeAt(i++);
+    enc1 = chr1 >> 2;
+    enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+    enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+    enc4 = chr3 & 63;
+    if (isNaN(chr2)) {
+      enc3 = enc4 = 64;
+    } else if (isNaN(chr3)) {
+      enc4 = 64;
+    }
+    output = output +
+      _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
+      _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+  }
+  return output;
+};
+
+// base64解码
+var decodeBase64 = function (input) {
+  var output = "";
+  var chr1, chr2, chr3;
+  var enc1, enc2, enc3, enc4;
+  var i = 0;
+  input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+  while (i < input.length) {
+    enc1 = _keyStr.indexOf(input.charAt(i++));
+    enc2 = _keyStr.indexOf(input.charAt(i++));
+    enc3 = _keyStr.indexOf(input.charAt(i++));
+    enc4 = _keyStr.indexOf(input.charAt(i++));
+    chr1 = (enc1 << 2) | (enc2 >> 4);
+    chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+    chr3 = ((enc3 & 3) << 6) | enc4;
+    output = output + String.fromCharCode(chr1);
+    if (enc3 != 64) {
+      output = output + String.fromCharCode(chr2);
+    }
+    if (enc4 != 64) {
+      output = output + String.fromCharCode(chr3);
+    }
+  }
+  output = decodeUtf8(output);
+  return output;
+};
+
+// 编码Utf8
+var encodeUtf8 = function (string) {
+  string = string.replace(/\r\n/g, "\n");
+  var utftext = "";
+  for (var n = 0; n < string.length; n++) {
+    var c = string.charCodeAt(n);
+    if (c < 128) {
+      utftext += String.fromCharCode(c);
+    } else if ((c > 127) && (c < 2048)) {
+      utftext += String.fromCharCode((c >> 6) | 192);
+      utftext += String.fromCharCode((c & 63) | 128);
+    } else {
+      utftext += String.fromCharCode((c >> 12) | 224);
+      utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+      utftext += String.fromCharCode((c & 63) | 128);
+    }
+
+  }
+  return utftext;
+}
+
+// 解码Utf8
+var decodeUtf8 = function (utftext) {
+  var string = "";
+  var i = 0;
+  var c = c1 = c2 = 0;
+  while (i < utftext.length) {
+    c = utftext.charCodeAt(i);
+    if (c < 128) {
+      string += String.fromCharCode(c);
+      i++;
+    } else if ((c > 191) && (c < 224)) {
+      c2 = utftext.charCodeAt(i + 1);
+      string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+      i += 2;
+    } else {
+      c2 = utftext.charCodeAt(i + 1);
+      c3 = utftext.charCodeAt(i + 2);
+      string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+      i += 3;
+    }
+  }
+  return string;
+}
+
+/**
+* 频率控制 返回函数连续调用时，fn 执行频率限定为每多少时间执行一次
+* @param fn {function}  需要调用的函数
+* @param delay  {number}    延迟时间，单位毫秒
+* @param immediate  {bool} 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。
+* @return {function}实际调用函数
+*/
+var throttle = function (fn, delay, immediate, debounce) {
+  var curr = +new Date(), //当前事件
+    last_call = 0,
+    last_exec = 0,
+    timer = null,
+    diff, //时间差
+    context, //上下文
+    args,
+    exec = function () {
+      last_exec = curr
+      fn.apply(context, args)
+    }
+  return function () {
+    curr = +new Date()
+      ; (context = this), (args = arguments), (diff = curr - (debounce ? last_call : last_exec) - delay)
+    clearTimeout(timer)
+    if (debounce) {
+      if (immediate) {
+        timer = setTimeout(exec, delay)
+      } else if (diff >= 0) {
+        exec()
+      }
+    } else {
+      if (diff >= 0) {
+        exec()
+      } else if (immediate) {
+        timer = setTimeout(exec, -diff)
+      }
+    }
+    last_call = curr
+  }
+}
+
+/**
+* 空闲控制 返回函数连续调用时，空闲时间必须大于或等于 delay，fn 才会执行
+* @param fn {function}  要调用的函数
+* @param delay   {number}    空闲时间
+* @param immediate  {bool} 给 immediate参数传递false 绑定的函数先执行，而不是delay后后执行。
+* @return {function}实际调用函数
+*/
+var debounce = function (fn, delay, immediate) {
+  return throttle(fn, delay, immediate, true)
+}
+
 
 //生成二维码
 // var getQrCode = function(obj,url,data,isshort){
@@ -1068,10 +1312,46 @@ var getRandomStrWidthSpecialChar = function(len){
 //   }
 // };
 
+/**
+ * textarea或input对象在指定的光标位置插入文字
+ * @param  {Object} obj dom对象
+ * @param  {String} str 要插入的文字
+ */
+var textareaInsertText = function (obj, str) {
+  if (document.selection) {
+    var sel = document.selection.createRange();
+    sel.text = str;
+  } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+    var startPos = obj.selectionStart,
+      endPos = obj.selectionEnd,
+      curPos = startPos,
+      tmpStr = obj.value;
+    obj.value = tmpStr.substring(0, startPos) + str + tmpStr.substring(endPos, tmpStr.length);
+    curPos += str.length;
+    setTimeout(function() {
+      obj.selectionStart = obj.selectionEnd = curPos;
+    }, 0);
+  } else {
+    obj.value += str;
+  }
+}
 
-
-
-
+/**
+ * textarea或input对象将光标定位到文字尾部
+ * @param  {Object} obj dom对象
+ */
+function textareaMoveToEnd(obj) {
+  obj.focus();
+  var len = obj.value.length;
+  if (document.selection) {
+    var sel = obj.createTextRange();
+    sel.moveStart('character', len);
+    sel.collapse();
+    sel.select();
+  } else if (typeof obj.selectionStart == 'number' && typeof obj.selectionEnd == 'number') {
+    obj.selectionStart = obj.selectionEnd = len;
+  }
+}
 
 
 
@@ -1104,7 +1384,7 @@ var getRandomStrWidthSpecialChar = function(len){
 //     return client
 // };*/
 //
-// /*
+// /**
 // * 获取APP版本信息
 // * 依赖：userAgent
 // * 参数：
@@ -1123,7 +1403,7 @@ var getRandomStrWidthSpecialChar = function(len){
 // * */
 // exports.getAppVersion = getAppVersion;
 //
-// /*
+// /**
 // * 获取当前APP版本是否大于预定版本
 // * 依赖：[ getAppVersion ]
 // * 参数：
@@ -1141,7 +1421,7 @@ var getRandomStrWidthSpecialChar = function(len){
 // * */
 // exports.getIsAppVersionLastest = getIsAppVersionLastest;
 //
-// /*
+// /**
 // * 扩展图片自动适应多种分辨率small original
 // * 依赖：无
 // * 参数:
@@ -1155,7 +1435,7 @@ var getRandomStrWidthSpecialChar = function(len){
 // // exports.imgadapt = imgadapt(imgurl,size);
 // exports.imgadapt = imgadapt;
 //
-// /*
+// /**
 // * 扩展图片自动适应多种分辨率@2x @3x
 // * 依赖：无
 // * 参数:
@@ -1241,6 +1521,100 @@ var getRandomStrWidthSpecialChar = function(len){
 // // exports.getsec = getsec;
 
 
+// module.exports = {
+//   indexOf,
+//   contains,
+//   append,
+//   remove,
+//   //event方法kuozhan
+//   addEvent,
+//   removeEvent,
+//   // handleEvent,
+//   // fixEvent,
+
+//   client,
+//   //扩展trim(),ltrim(),rtrim()去除字符串两端空格
+//   trim,
+//   //去除字符串中间空格
+//   ctrim,
+//   //扩展delHtmlTag()去除HTML标签及标签里面的文字
+//   delHtmlTag,
+//   //去除换行
+//   clearBr,
+//   //去除HTML标签
+//   clearHtml,
+//   //去除HTML标签及空格、换行
+//   clearHtmlNS,
+//   //去除HTML标签及空格（多个空格合并一个）、换行
+//   clearHtmlNS1,
+//   //去除HTML标签及换行
+//   clearHtmlN,
+//   //去除HTML标签保留空格、换行
+//   clearHtmlExpSN,
+//   //去除HTML标签所有属性
+//   clearAttr,
+//   //用~替换= 用^替换& 转码成微信跳转链接
+//   enWxJumpLink,
+//   //用=替换~ 用&替换^ 解码成微信跳转链接
+//   deWxJumpLink,
+//   //获取字符串中的数字
+//   getNumber,
+//   //是否为由数字组成的字符串
+//   isDigitals,
+
+//   pattern,
+//   getAppVersion,
+//   getIsAppVersionLastest,
+//   getScrollPosition,
+//   imgadapt,
+//   imgchoose,
+//   formatTime,
+//   formatTimeStr,
+//   stopDefault,
+//   stopBubble,
+//   getUrlParam,
+//   getParameter,
+//   getDirParam,
+//   getStrParam,
+//   getFileType,
+//   getCHSLength,
+//   cutCHSString,
+//   isExitsFunction,
+//   isExitsVariable,
+//   hasClass,
+//   getStrLen,
+//   cutStrLen,
+//   saWindowHeight,
+//   saWindowWidth,
+
+//   setCache,
+//   getCache,
+//   clearCache,
+//   setSessionStorage,
+//   getSessionStorage,
+//   delSessionStorage,
+//   setLocalStorage,
+//   getLocalStorage,
+//   delLocalStorage,
+//   setCookie,
+//   getCookie,
+//   delCookie,
+//   getsec,
+
+
+//   getRandomNum,
+//   getRandomStr,
+//   getRandomStrWidthSpecialChar,
+
+//   encodeBase64,
+//   decodeBase64,
+//   encodeUtf8,
+//   decodeUtf8,
+//   debounce,
+//   throttle
+
+// }
+
 module.exports = {
   indexOf: indexOf,
   contains: contains,
@@ -1283,6 +1657,7 @@ module.exports = {
   isDigitals: isDigitals,
 
   pattern: pattern,
+  getOsVersion: getOsVersion,
   getAppVersion: getAppVersion,
   getIsAppVersionLastest: getIsAppVersionLastest,
   getScrollPosition: getScrollPosition,
@@ -1307,6 +1682,9 @@ module.exports = {
   saWindowHeight: saWindowHeight,
   saWindowWidth: saWindowWidth,
 
+  setCache: setCache,
+  getCache: getCache,
+  clearCache: clearCache,
   setSessionStorage: setSessionStorage,
   getSessionStorage: getSessionStorage,
   delSessionStorage: delSessionStorage,
@@ -1321,6 +1699,15 @@ module.exports = {
 
   getRandomNum: getRandomNum,
   getRandomStr: getRandomStr,
-  getRandomStrWidthSpecialChar: getRandomStrWidthSpecialChar
+  getRandomStrWidthSpecialChar: getRandomStrWidthSpecialChar,
+
+  encodeBase64: encodeBase64,
+  decodeBase64: decodeBase64,
+  encodeUtf8: encodeUtf8,
+  decodeUtf8: decodeUtf8,
+  debounce: debounce,
+  throttle: throttle,
+  textareaInsertText: textareaInsertText,
+  textareaMoveToEnd: textareaMoveToEnd
 
 }

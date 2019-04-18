@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["@babel/env",{
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "targets": "> 0.25%, not dead"
+      }]
+  ],
+  "comments": false,
+  // "plugins": ["transform-runtime", "syntax-dynamic-import"],
+  // "env": {
+  //   "test": {
+  //     "presets": ["env"],
+  //     "plugins": ["dynamic-import-node"]
+  //   }
+  // }
+}

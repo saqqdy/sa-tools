@@ -1,22 +1,51 @@
 {
-    "name": "sa-tools",
-    "version": "1.0.1",
-    "description": "sa-tools",
-    "main": "tools.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/saqqdy/sa-tools.git"
-    },
-    "keywords": [
-        "tools"
-    ],
-    "author": "saqqdy <www.saqqdy.com>",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/saqqdy/sa-tools/issues"
-    },
-    "homepage": "https://github.com/saqqdy/sa-tools#readme"
+  "name": "sa-common",
+  "version": "1.0.54",
+  "description": "一些常用的JS方法",
+  "main": "index.min.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "es5": "npx babel src -d lib",
+    "build": "webpack --config webpack.prod.conf.js",
+    "pub": "git add . && git commit -m 'fix bugs' && git pull && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saqqdy/common.git"
+  },
+  "keywords": [
+    "common",
+    "saqqdy"
+  ],
+  "author": "saqqdy@qq.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saqqdy/common/issues"
+  },
+  "homepage": "https://github.com/saqqdy/common#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@saqqdy/prettier-config": "^1.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.0.1",
+    "es6-promise": "^4.2.6",
+    "webpack-merge": "^4.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Android >= 3.2",
+    "Firefox >= 20",
+    "iOS 7"
+  ]
 }
