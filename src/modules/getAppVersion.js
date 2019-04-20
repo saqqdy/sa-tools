@@ -3,7 +3,7 @@
  * @param appName {String} app名称
  * @param withosstr {Boolean} 是否需要带上名称
  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
- * @return {Boolean/null} null/true/false
+ * @return {Boolean|null} null/true/false
  */
 function getAppVersion(appName, withappstr, userAgent) {
   // console.log(getAppVersion("Chrome"));

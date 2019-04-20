@@ -1,9 +1,11 @@
+import getAppVersion from './getAppVersion'
+
 /**
  * 获取手机系统版本
  * @param osName {String} 系统类型字符串Android、iPod、iWatch或iPhone
  * @param withosstr {Boolean} 是否需要带上名称
  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
- * @return {Boolean/null} null/true/false
+ * @return {Boolean|null} null/true/false
  */
 function getOsVersion(osName, withosstr, userAgent) {
   userAgent = userAgent || navigator.appVersion

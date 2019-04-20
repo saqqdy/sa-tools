@@ -1,9 +1,11 @@
+import getAppVersion from './getAppVersion'
+
 /**
  * 版本号大小对比
  * @param appName {String} app名称
  * @param compareVer {String} 必传 需要对比的版本号
  * @param userAgent {String} ua，可不传，默认取navigator.appVersion
- * @return {Boolean/null} null/true/false
+ * @return {Boolean|null} null/true/false
  */
 function getIsAppVersionLastest(appName, compareVer, userAgent) {
   //console.log(getIsAppVersionLastest("Chrome","5.1"));

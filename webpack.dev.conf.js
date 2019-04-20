@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, ''),
-      filename: '[name].min.js',
+      filename: '[name].js',
       // publicPath: '/assets/',
       // library: 'MyLibrary',
       libraryTarget: 'umd'

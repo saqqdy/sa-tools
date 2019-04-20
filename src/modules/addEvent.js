@@ -1,5 +1,9 @@
 /**
- * addEvent()
+ * addEvent()事件委托，支持多次委托
+ * 
+ * @param {Object} element js dom对象
+ * @param {String} type 事件类型。不需要加on
+ * @param {Function} handler 回调方法
  */
 const addEvent = (element, type, handler) => {
   if (element.addEventListener) {
@@ -27,6 +31,12 @@ const addEvent = (element, type, handler) => {
 // a counter used to create unique IDs
 addEvent.guid = 1
 
+/**
+ * handleEvent()执行事件
+ *
+ * @param {String} event 事件类型
+ * @returns {Boolean}
+ */
 function handleEvent(event) {
   var returnValue = true
   //抓获事件对象(IE使用全局事件对象)
@@ -43,7 +53,11 @@ function handleEvent(event) {
   return returnValue
 }
 
-//为IE的事件对象添加一些“缺失的”函数
+/**
+ * 为IE的事件对象添加一些“缺失的”函数
+ * @param {String} event 事件类型
+ * @returns {Object} 返回补齐了缺失方法的的event
+ */
 function fixEvent(event) {
   //添加标准的W3C方法
   event.preventDefault = fixEvent.preventDefault
@@ -57,4 +71,4 @@ fixEvent.stopPropagation = function() {
   this.cancelBubble = true
 }
 
- export default addEvent
+export default addEvent

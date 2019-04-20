@@ -1,26 +1,16 @@
 /**
- * setCookie()
+ * setCookie写入cookie的方法
+ * @param {String} name cookie名称
+ * @param {*} value 设置要存储的值，可以是对象或字符串
+ * @param {Number} seconds cookie有效时间
  */
-//写cookies
-function setCookie(name, value, time, useLocalStorage) {
-  useLocalStorage = typeof useLocalStorage !== 'undefined' ? useLocalStorage : true
-  var strsec = time// getsec(time)
-  var exp = new Date()
-  var expires = strsec ? exp.getTime() + strsec : ''
-  var obj = {}
-  obj.value = value
-  obj.expires = expires
-  obj = encodeURIComponent(JSON.stringify(obj))
-  if (window.localStorage && useLocalStorage) {
-    localStorage.setItem(name, obj)
-  } else {
-    strsec = strsec ? strsec : 2592000000 //没有设定时间的默认30天
-    // var strsec = getsec(time);
-    // var exp = new Date();
-    // value = (typeof(value) == "object" ? JSON.stringify(value) : value);
-    exp.setTime(exp.getTime() + strsec)
-    document.cookie = name + '=' + obj + ';expires=' + exp.toGMTString() + ';path=/'
-  }
+function setCookie(name, value, seconds) {
+  var e = new Date()
+  var expires = seconds ? e.getTime() + seconds : ''
+  var obj = encodeURIComponent(JSON.stringify({ value, expires }))
+  seconds = seconds || 2592000000 //没有设定时间的默认30天
+  e.setTime(e.getTime() + seconds)
+  document.cookie = name + '=' + obj + ';expires=' + e.toGMTString() + ';path=/'
 }
 
 export default setCookie

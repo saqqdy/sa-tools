@@ -1,3 +1,7 @@
+/**
+ * pattern返回一些常用的正则
+ * @returns {Object} 返回对象
+ */
 function pattern() {
   return {
     any: /[\w\W]+/,

@@ -1,3 +1,8 @@
+/**
+ * client方法返回一个浏览器判断结果对象
+ * @param {String} userAgent 可选
+ * @returns {Object} 返回常用ua匹配表
+ */
 const client = userAgent => {
   userAgent = userAgent || navigator.appVersion || ''
   const userAgentL = userAgent.toLowerCase()
