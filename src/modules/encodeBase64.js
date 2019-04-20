@@ -1,8 +1,9 @@
+import encodeUtf8 from "./encodeUtf8";
 const _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
 
 /**
  * 字符串、数字转base64
- * @param {*} input 需要编码的对象
+ * @param {String} input 需要编码的字符串
  * @returns {String} 返回BASE64编码
  */
 const encodeBase64 = input => {

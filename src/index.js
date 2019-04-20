@@ -78,9 +78,9 @@ import addEvent from './modules/addEvent' // 事件委托，支持多次委托
 import removeEvent from './modules/removeEvent' // removeEvent移除由addEvent创建的事件委托
 import getScrollPosition from './modules/getScrollPosition' // 获取滑动到顶部和底部 返回'top' 'bottom'，建议使用限流
 
-export default {
-  client: client(),
-  pattern: pattern(),
+export {
+  client,
+  pattern,
 
   trim,
   clearAttr,

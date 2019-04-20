@@ -31,8 +31,8 @@
 <dt><a href="#clearHtmlTag">clearHtmlTag(string)</a> ⇒ <code>String</code></dt>
 <dd><p>去除HTML标签及标签里面的文字</p>
 </dd>
-<dt><a href="#client">client(userAgent)</a> ⇒ <code>Object</code></dt>
-<dd><p>client方法返回一个浏览器判断结果对象</p>
+<dt><a href="#client">client(name, userAgent)</a> ⇒ <code>Object</code> | <code>Boolean</code></dt>
+<dd><p>client方法返回一个浏览器判断结果：{ ANDROID: true, GECKO: true, GLSH_APP: false, IE: false, IOS: false, IPAD: false, IPHONE: false, MOBILE: true, MOBILEDEVICE: true, OPERA: false, QQ: false, QQBROWSER: false, TRIDENT: false, WEBKIT: true, WEIXIN: false }</p>
 </dd>
 <dt><a href="#cutCHSString">cutCHSString(str, len, hasDot)</a> ⇒ <code>String</code></dt>
 <dd><p>截取字符串，中文算2个字节</p>
@@ -149,7 +149,7 @@ name=exMall-detail-goodsInfoId&amp;params[goodsInfoId]=8866 转成 name</em>exMa
 <dd><p>是否存在指定变量</p>
 </dd>
 <dt><a href="#pattern">pattern()</a> ⇒ <code>Object</code></dt>
-<dd><p>pattern返回一些常用的正则</p>
+<dd><p>pattern返回一些常用的正则：any, arrjson, chinese, email, float, isjson, json, mobile, number, pass, postcode, qq, string, tel, textarea, url, username</p>
 </dd>
 <dt><a href="#removeEvent">removeEvent(element, type, handler)</a></dt>
 <dd><p>removeEvent移除由addEvent创建的事件委托</p>
@@ -298,15 +298,16 @@ handleEvent()执行事件
 
 <a name="client"></a>
 
-## client(userAgent) ⇒ <code>Object</code>
-client方法返回一个浏览器判断结果对象
+## client(name, userAgent) ⇒ <code>Object</code> \| <code>Boolean</code>
+client方法返回一个浏览器判断结果：{ ANDROID: true, GECKO: true, GLSH_APP: false, IE: false, IOS: false, IPAD: false, IPHONE: false, MOBILE: true, MOBILEDEVICE: true, OPERA: false, QQ: false, QQBROWSER: false, TRIDENT: false, WEBKIT: true, WEIXIN: false }
 
 **Kind**: global function  
-**Returns**: <code>Object</code> - 返回常用ua匹配表  
+**Returns**: <code>Object</code> \| <code>Boolean</code> - 返回常用ua匹配表，如果传了name，那么返回是否匹配该终端true/false  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| userAgent | <code>String</code> | 可选 |
+| name | <code>String</code> | 可选，比如传入MicroMessenger，返回是否为微信内置浏览器 |
+| userAgent | <code>String</code> | 可选，传入自定义的ua，默认取浏览器的navigator.appVersion |
 
 <a name="cutCHSString"></a>
 
@@ -371,7 +372,7 @@ base64解码
 
 | Param | Type | Description |
 | --- | --- | --- |
-| input | <code>String</code> | 需要解码的对象 |
+| input | <code>String</code> | 需要解码的字符串 |
 
 <a name="decodeUtf8"></a>
 
@@ -383,7 +384,7 @@ base64解码
 
 | Param | Type | Description |
 | --- | --- | --- |
-| input | <code>String</code> | 需要解码的对象 |
+| input | <code>String</code> | 需要解码的字符串 |
 
 <a name="delCookie"></a>
 
@@ -453,7 +454,7 @@ name=exMall-detail-goodsInfoId&params[goodsInfoId]=8866 转成 name*exMall-detai
 
 | Param | Type | Description |
 | --- | --- | --- |
-| input | <code>\*</code> | 需要编码的对象 |
+| input | <code>String</code> | 需要编码的字符串 |
 
 <a name="encodeUtf8"></a>
 
@@ -465,7 +466,7 @@ name=exMall-detail-goodsInfoId&params[goodsInfoId]=8866 转成 name*exMall-detai
 
 | Param | Type | Description |
 | --- | --- | --- |
-| input | <code>\*</code> | 需要编码的对象 |
+| input | <code>String</code> | 需要编码的字符串 |
 
 <a name="formatTime"></a>
 
@@ -760,7 +761,7 @@ getWindowSize获取窗口大小
 <a name="pattern"></a>
 
 ## pattern() ⇒ <code>Object</code>
-pattern返回一些常用的正则
+pattern返回一些常用的正则：any, arrjson, chinese, email, float, isjson, json, mobile, number, pass, postcode, qq, string, tel, textarea, url, username
 
 **Kind**: global function  
 **Returns**: <code>Object</code> - 返回对象  

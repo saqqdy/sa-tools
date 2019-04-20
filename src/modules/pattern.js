@@ -1,7 +1,8 @@
 /**
- * pattern返回一些常用的正则
+ * pattern返回一些常用的正则：any, arrjson, chinese, email, float, isjson, json, mobile, number, pass, postcode, qq, string, tel, textarea, url, username
  * @returns {Object} 返回对象
  */
+
 function pattern() {
   return {
     any: /[\w\W]+/,
@@ -22,10 +23,9 @@ function pattern() {
     json: /^\{[\s\S]*\}$/,
     arrjson: /^\[\{[\s\S]*\}\]$/,
     array: /^\[[\s\S]*\]$/,
-    getjson: /[\s\S]*(\{[\s\S]*\})[\s\S]*/,
-    textarea: /[\u4e00-\u9fa5_a-zA-Z0-9\,\.\/\?\;\:\'\"\[\]\-\*\(\)\（\）\%\$\@\\\!\，\《\》\。\、\？\；\：\‘\’\“\”\…\￥\！]/,
-    repArticleHouse: /([\s\S]*)\{\{\{articleHouse\}\}\}([\s\S]*)/
+    isjson: /[\s\S]*(\{[\s\S]*\})[\s\S]*/,
+    textarea: /[\u4e00-\u9fa5_a-zA-Z0-9\,\.\/\?\;\:\'\"\[\]\-\*\(\)\（\）\%\$\@\\\!\，\《\》\。\、\？\；\：\‘\’\“\”\…\￥\！]/
   }
 }
 
-export default pattern
+export default pattern()

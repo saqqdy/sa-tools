@@ -1,6 +1,6 @@
 /**
  * 编码Utf8
- * @param {*} input 需要编码的对象
+ * @param {String} input 需要编码的字符串
  * @returns {String} 返回UTF-8编码
  */
 const encodeUtf8 = string => {

@@ -1,8 +1,9 @@
+import decodeUtf8 from "./decodeUtf8";
 const _keyStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
 
 /**
  * base64解码
- * @param {String} input 需要解码的对象
+ * @param {String} input 需要解码的字符串
  * @returns {String} 解码后的字符串
  */
 const decodeBase64 = input => {

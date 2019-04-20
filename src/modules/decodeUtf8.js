@@ -1,12 +1,15 @@
 /**
  * 解码Utf8
- * @param {String} input 需要解码的对象
+ * @param {String} input 需要解码的字符串
  * @returns {String} 解码后的字符串
  */
 var decodeUtf8 = function(utftext) {
   var string = ''
   var i = 0
-  var c = (c1 = c2 = 0)
+  var c = 0,
+    c1 = 0,
+    c2 = 0,
+    c3 = 0
   while (i < utftext.length) {
     c = utftext.charCodeAt(i)
     if (c < 128) {

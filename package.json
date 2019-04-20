@@ -1,6 +1,6 @@
 {
   "name": "sa-tools",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "一些常用的JS方法",
   "main": "lib/index.js",
   "directories": {
@@ -13,7 +13,21 @@
     "es5": "npx babel src -d lib",
     "docs": "jsdoc2md src/**/*.js > API.md",
     "lib": "rm -rf src/**/tempCodeRunnerFile.js && mkdir -p lib && cp -rf ./src/* lib && rm -rf lib/**/*.js && npx babel src -d lib",
-    "pub": "git add . && git commit -m 'v2.0.0' && git pull && git push"
+    "pub": "git add . && git commit -m 'fix bugs' && git pull && git push"
+  },
+  "dependencies": {
+    "core-js": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@saqqdy/prettier-config": "^1.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "webpack-merge": "^4.2.1"
   },
   "repository": {
     "type": "git",
@@ -28,27 +42,5 @@
   "bugs": {
     "url": "https://github.com/saqqdy/sa-tools/issues"
   },
-  "homepage": "https://github.com/saqqdy/sa-tools#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.4.3",
-    "@babel/core": "^7.4.3",
-    "@babel/polyfill": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@saqqdy/prettier-config": "^1.0.0",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-dynamic-import-node": "^2.2.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-polyfill": "^6.26.0",
-    "core-js": "^3.0.1",
-    "es6-promise": "^4.2.6",
-    "webpack-merge": "^4.2.1"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "Android >= 5.0",
-    "Firefox >= 35",
-    "iOS 9"
-  ]
+  "homepage": "https://github.com/saqqdy/sa-tools#readme"
 }
